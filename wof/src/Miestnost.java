@@ -56,6 +56,10 @@ public class Miestnost {
     }
 
     public void vypisPredmety() {
+        if (this.predmety.isEmpty()) {
+            System.out.println("V miestnosti nic nieje");
+            return;
+        }
         System.out.print("Predmety: ");
         for (String predmet : this.predmety.keySet()) {
             System.out.print(predmet + " ");
