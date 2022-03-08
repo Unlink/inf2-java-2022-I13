@@ -90,6 +90,8 @@ public class Hra  {
                 return this.ukonciHru(prikaz);
             case "prehladaj":
                 this.hrac.prehladajMiestnost();
+            case "inventar":
+                this.hrac.zobrazInventar();
                 return false;
             default:
                 return false;

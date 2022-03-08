@@ -11,6 +11,7 @@ public class Hrac {
         this.meno = meno;
         this.vydrz = 100;
         this.inventar = new TreeMap<>();
+        this.inventar.put("isic", new Predmet("isic"));
     }
 
     public Miestnost getAktualnaMiestnost() {
@@ -44,5 +45,17 @@ public class Hrac {
             this.aktualnaMiestnost = novaMiestnost;
             this.aktualnaMiestnost.vypisInfo();
         }
+    }
+
+    public void zobrazInventar() {
+        if (this.inventar.isEmpty()) {
+            System.out.println("V inventari nic nieje");
+            return;
+        }
+        System.out.print("Predmety: ");
+        for (String predmet : this.inventar.keySet()) {
+            System.out.print(predmet + " ");
+        }
+        System.out.println();
     }
 }
