@@ -88,9 +88,16 @@ public class Hra  {
                 return false;
             case "ukonci":
                 return this.ukonciHru(prikaz);
+            case "prehladaj":
+                this.prehladajMiestnost();
+                return false;
             default:
                 return false;
         }
+    }
+
+    private void prehladajMiestnost() {
+        this.aktualnaMiestnost.vypisPredmety();
     }
 
     // implementacie prikazov:
