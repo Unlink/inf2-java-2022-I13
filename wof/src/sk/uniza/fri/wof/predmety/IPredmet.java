@@ -1,3 +1,5 @@
+package sk.uniza.fri.wof.predmety;
+
 /**
  * 28. 2. 2021 - 21:14
  *

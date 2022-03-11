@@ -1,3 +1,11 @@
+package sk.uniza.fri.wof.hra;
+
+import sk.uniza.fri.wof.miestnosti.Miestnost;
+import sk.uniza.fri.wof.predmety.Hodinky;
+import sk.uniza.fri.wof.predmety.IPredmet;
+import sk.uniza.fri.wof.predmety.ZakladnyPredmet;
+import sk.uniza.fri.wof.prikazy.Prikaz;
+
 import java.util.TreeMap;
 
 public class Hrac {

@@ -1,3 +1,7 @@
+package sk.uniza.fri.wof.miestnosti;
+
+import sk.uniza.fri.wof.predmety.ZakladnyPredmet;
+
 /**
  * 28. 2. 2021 - 21:14
  *

@@ -1,3 +1,7 @@
+package sk.uniza.fri.wof.predmety;
+
+import sk.uniza.fri.wof.predmety.IPredmet;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 

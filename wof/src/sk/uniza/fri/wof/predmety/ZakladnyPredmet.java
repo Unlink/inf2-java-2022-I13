@@ -1,5 +1,6 @@
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+package sk.uniza.fri.wof.predmety;
+
+import sk.uniza.fri.wof.predmety.IPredmet;
 
 /**
  * 28. 2. 2021 - 21:14
