@@ -58,4 +58,46 @@ public class Hrac {
         }
         System.out.println();
     }
+
+    public void zoberPredmet(Prikaz prikaz) {
+        if (!prikaz.maParameter()) {
+            System.out.println("Zober co?");
+            return;
+        }
+
+        Predmet predmet = this.aktualnaMiestnost.zoberPredmet(prikaz.getParameter());
+        if (predmet != null) {
+            this.inventar.put(predmet.getNazov(), predmet);
+        } else {
+            System.out.println("Tento predmet tu nieje");
+        }
+    }
+
+    public void polozPredmet(Prikaz prikaz) {
+        if (!prikaz.maParameter()) {
+            System.out.println("Poloz co?");
+            return;
+        }
+
+        Predmet predmet = this.inventar.get(prikaz.getParameter());
+        if (predmet != null) {
+            this.aktualnaMiestnost.pridajPredmet(predmet);
+        } else {
+            System.out.println("Tento predmet nemam");
+        }
+    }
+
+    public void pouziPredmet(Prikaz prikaz) {
+        if (!prikaz.maParameter()) {
+            System.out.println("Pouzi co?");
+            return;
+        }
+
+        Predmet predmet = this.inventar.get(prikaz.getParameter());
+        if (predmet != null) {
+            System.out.println("Pouzil som " + predmet.getNazov());
+        } else {
+            System.out.println("Tento predmet nemam");
+        }
+    }
 }

@@ -70,4 +70,8 @@ public class Miestnost {
     public Miestnost dajMiestnostVSmere(String smer) {
         return this.vychody.get(smer);
     }
+
+    public Predmet zoberPredmet(String nazov) {
+        return this.predmety.remove(nazov);
+    }
 }
