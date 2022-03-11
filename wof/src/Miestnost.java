@@ -27,7 +27,7 @@ public class Miestnost {
     public Miestnost(String popis) {
         this.popisMiestnosti = popis;
         this.vychody = new TreeMap<>();
-        this.predmety = new TreeMap<String, ZakladnyPredmet>();
+        this.predmety = new TreeMap<>();
     }
 
     public void pridajVychod(String smer, Miestnost miestnost) {

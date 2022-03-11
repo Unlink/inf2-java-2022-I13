@@ -20,14 +20,6 @@ public class ZakladnyPredmet implements IPredmet {
 
     @Override
     public void pouziSa() {
-        switch (this.nazov) {
-            case "hodinky":
-                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
-                LocalTime myObj = LocalTime.now();
-                System.out.println(myObj.format(myFormatObj));
-                break;
-            default:
-                System.out.println("Pouzil som " + this.nazov);
-        }
+        System.out.println("Pouzil som " + this.nazov);
     }
 }

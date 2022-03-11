@@ -12,7 +12,7 @@ public class Hrac {
         this.vydrz = 100;
         this.inventar = new TreeMap<>();
         this.inventar.put("isic", new ZakladnyPredmet("isic"));
-        this.inventar.put("hodinky", new ZakladnyPredmet("hodinky"));
+        this.inventar.put("hodinky", new Hodinky());
     }
 
     public Miestnost getAktualnaMiestnost() {
