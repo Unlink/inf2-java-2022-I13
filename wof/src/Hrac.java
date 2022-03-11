@@ -2,7 +2,7 @@ import java.util.TreeMap;
 
 public class Hrac {
     private Miestnost aktualnaMiestnost;
-    private TreeMap<String, Predmet> inventar;
+    private TreeMap<String, IPredmet> inventar;
     private String meno;
     private int vydrz;
 
@@ -11,7 +11,8 @@ public class Hrac {
         this.meno = meno;
         this.vydrz = 100;
         this.inventar = new TreeMap<>();
-        this.inventar.put("isic", new Predmet("isic"));
+        this.inventar.put("isic", new ZakladnyPredmet("isic"));
+        this.inventar.put("hodinky", new ZakladnyPredmet("hodinky"));
     }
 
     public Miestnost getAktualnaMiestnost() {
@@ -65,7 +66,7 @@ public class Hrac {
             return;
         }
 
-        Predmet predmet = this.aktualnaMiestnost.zoberPredmet(prikaz.getParameter());
+        IPredmet predmet = this.aktualnaMiestnost.zoberPredmet(prikaz.getParameter());
         if (predmet != null) {
             this.inventar.put(predmet.getNazov(), predmet);
         } else {
@@ -79,7 +80,7 @@ public class Hrac {
             return;
         }
 
-        Predmet predmet = this.inventar.get(prikaz.getParameter());
+        IPredmet predmet = this.inventar.get(prikaz.getParameter());
         if (predmet != null) {
             this.aktualnaMiestnost.pridajPredmet(predmet);
         } else {
@@ -93,9 +94,9 @@ public class Hrac {
             return;
         }
 
-        Predmet predmet = this.inventar.get(prikaz.getParameter());
+        IPredmet predmet = this.inventar.get(prikaz.getParameter());
         if (predmet != null) {
-            System.out.println("Pouzil som " + predmet.getNazov());
+            predmet.pouziSa();
         } else {
             System.out.println("Tento predmet nemam");
         }

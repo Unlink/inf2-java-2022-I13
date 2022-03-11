@@ -15,7 +15,7 @@ import java.util.TreeMap;
 public class Miestnost {
     private final String popisMiestnosti;
     private TreeMap<String, Miestnost> vychody;
-    private TreeMap<String, Predmet> predmety;
+    private TreeMap<String, IPredmet> predmety;
 
     /**
      * Vytvori miestnost popis ktorej je v parametrom.
@@ -27,14 +27,14 @@ public class Miestnost {
     public Miestnost(String popis) {
         this.popisMiestnosti = popis;
         this.vychody = new TreeMap<>();
-        this.predmety = new TreeMap<String, Predmet>();
+        this.predmety = new TreeMap<String, ZakladnyPredmet>();
     }
 
     public void pridajVychod(String smer, Miestnost miestnost) {
         this.vychody.put(smer, miestnost);
     }
 
-    public void pridajPredmet(Predmet predmet) {
+    public void pridajPredmet(IPredmet predmet) {
         this.predmety.put(predmet.getNazov(), predmet);
     }
 
@@ -71,7 +71,7 @@ public class Miestnost {
         return this.vychody.get(smer);
     }
 
-    public Predmet zoberPredmet(String nazov) {
+    public IPredmet zoberPredmet(String nazov) {
         return this.predmety.remove(nazov);
     }
 }

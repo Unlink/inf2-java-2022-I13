@@ -37,8 +37,8 @@ public class MapaHry {
 
         kancelaria.pridajVychod("labak", labak);
 
-        terasa.pridajPredmet(new Predmet("mineralka"));
-        terasa.pridajPredmet(new Predmet("kamen"));
+        terasa.pridajPredmet(new ZakladnyPredmet("mineralka"));
+        terasa.pridajPredmet(new ZakladnyPredmet("kamen"));
 
         this.startovaciaMiestnost = terasa;  // startovacia miestnost hry
     }
