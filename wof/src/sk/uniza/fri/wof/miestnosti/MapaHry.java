@@ -27,6 +27,13 @@ public class MapaHry {
         Miestnost labak = new Miestnost("pocitacove laboratorium");
         Miestnost kancelaria = new Miestnost("kancelaria spravcu pocitacoveho laboratoria");
 
+
+        Miestnost kryt = new Miestnost("proti atomovy kryt");
+        Miestnost chodba1Poschode = new Miestnost("chodba 1");
+        Miestnost chodba2Poschode = new Miestnost("chodba 2");
+
+        Vytah vytah = new Vytah(kryt, terasa, chodba1Poschode, chodba2Poschode);
+
         // inicializacia miestnosti = nastavenie vychodov
         terasa.pridajVychod("aula", aula);
         terasa.pridajVychod("bufet", bufet);

@@ -3,6 +3,7 @@ package sk.uniza.fri.wof.hra;
 import sk.uniza.fri.wof.miestnosti.Miestnost;
 import sk.uniza.fri.wof.predmety.Hodinky;
 import sk.uniza.fri.wof.predmety.IPredmet;
+import sk.uniza.fri.wof.predmety.IZobratelny;
 import sk.uniza.fri.wof.predmety.ZakladnyPredmet;
 import sk.uniza.fri.wof.prikazy.Prikaz;
 
@@ -10,7 +11,7 @@ import java.util.TreeMap;
 
 public class Hrac {
     private Miestnost aktualnaMiestnost;
-    private TreeMap<String, IPredmet> inventar;
+    private TreeMap<String, IZobratelny> inventar;
     private String meno;
     private int vydrz;
 
@@ -76,7 +77,12 @@ public class Hrac {
 
         IPredmet predmet = this.aktualnaMiestnost.zoberPredmet(prikaz.getParameter());
         if (predmet != null) {
-            this.inventar.put(predmet.getNazov(), predmet);
+            if (predmet instanceof IZobratelny && ((IZobratelny)predmet).mozemZobrat()) {
+                this.inventar.put(predmet.getNazov(), (IZobratelny)predmet);
+            } else {
+                this.aktualnaMiestnost.pridajPredmet(predmet);
+                System.out.println("Nekradni");
+            }
         } else {
             System.out.println("Tento predmet tu nieje");
         }
@@ -103,6 +109,10 @@ public class Hrac {
         }
 
         IPredmet predmet = this.inventar.get(prikaz.getParameter());
+        if (predmet == null) {
+            predmet = this.aktualnaMiestnost.najdiPredmet(prikaz.getParameter());
+        }
+
         if (predmet != null) {
             predmet.pouziSa();
         } else {

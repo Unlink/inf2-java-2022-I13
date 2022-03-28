@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author janik
  */
-public class Hodinky implements IPredmet {
+public class Hodinky implements IZobratelny {
 
     @Override
     public String getNazov() {
@@ -22,5 +22,10 @@ public class Hodinky implements IPredmet {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm");
         LocalTime myObj = LocalTime.now();
         System.out.println(myObj.format(myFormatObj));
+    }
+
+    @Override
+    public boolean mozemZobrat() {
+        return true;
     }
 }

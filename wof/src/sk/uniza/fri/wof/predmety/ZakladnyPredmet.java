@@ -7,7 +7,7 @@ import sk.uniza.fri.wof.predmety.IPredmet;
  *
  * @author janik
  */
-public class ZakladnyPredmet implements IPredmet {
+public class ZakladnyPredmet implements IZobratelny {
     private String nazov;
 
     public ZakladnyPredmet(String nazov) {
@@ -22,5 +22,10 @@ public class ZakladnyPredmet implements IPredmet {
     @Override
     public void pouziSa() {
         System.out.println("Pouzil som " + this.nazov);
+    }
+
+    @Override
+    public boolean mozemZobrat() {
+        return true;
     }
 }
