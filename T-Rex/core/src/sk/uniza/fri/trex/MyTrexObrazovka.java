@@ -7,8 +7,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -25,6 +24,10 @@ public class MyTrexObrazovka extends ScreenAdapter {
     private final MyTrexGame myTrexGame;
     private final SpriteBatch batch;
     private final ShapeRenderer shapeRenderer;
+    private final Sprite dyno;
+    private final Animation<Sprite> dynoAnimation;
+    private final Animation<Sprite> dynoAnimation2;
+    private final Animation<Sprite> dynoAnimation3;
 
     private Camera kamera;
     private Viewport viewport;
@@ -34,6 +37,8 @@ public class MyTrexObrazovka extends ScreenAdapter {
     private boolean inJump = false;
     private boolean rising = true;
     private final int jumpHeight = 150;
+    private float dynoAnimationTime = 0;
+    private boolean isDucking = false;
 
     private final LinkedList<Prekazka> prekazky = new LinkedList<Prekazka>();
     private final Random rnd = new Random();
@@ -43,8 +48,31 @@ public class MyTrexObrazovka extends ScreenAdapter {
         this.myTrexGame = myTrexGame;
         this.batch = new SpriteBatch();
         this.shapeRenderer = new ShapeRenderer();
-        this.img = new Texture("badlogic.jpg");
+        this.img = new Texture("offline-sprite-2x.png");
         this.font = new BitmapFont();
+
+        this.dynoAnimation = new Animation<Sprite>(0.25f, new Sprite[] {
+                new Sprite(this.img, 1338+88*2, 2, 88, 94),
+                new Sprite(this.img, 1338+88*3, 2, 88, 94),
+                //new Sprite(this.img, 1338+88*6, 36, 118, 60),
+                //new Sprite(this.img, 1338+88*6+118, 36, 118, 60),
+        });
+        this.dynoAnimation2 = new Animation<Sprite>(0.25f, new Sprite[] {
+                new Sprite(this.img, 1338, 2, 88, 94),
+                new Sprite(this.img, 1338+88, 2, 88, 94),
+        });
+        this.dynoAnimation3 = new Animation<Sprite>(0.1f, new Sprite[] {
+                new Sprite(this.img, 1338+88*6, 36, 118, 60),
+                new Sprite(this.img, 1338+88*6+118, 36, 118, 60),
+        });
+        this.dynoAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        this.dynoAnimation2.setPlayMode(Animation.PlayMode.LOOP);
+        this.dynoAnimation3.setPlayMode(Animation.PlayMode.LOOP);
+
+        this.dynoAnimation.getKeyFrames()[0].setRotation(-10);
+        //this.dynoAnimation.getKeyFrames()[0].scale(0.1f);
+
+        this.dyno = new Sprite(this.img, 1338+88*2, 2, 88, 94);
 
         this.kamera = new OrthographicCamera();
         this.viewport = new FitViewport(SIRKA_PLOCHY, VYSKA_PLOCHY, this.kamera);
@@ -60,6 +88,20 @@ public class MyTrexObrazovka extends ScreenAdapter {
             this.inJump = true;
             this.rising = true;
             this.yPos = 10;
+        }
+
+        if (!this.inJump && !prekazky.isEmpty() && prekazky.getFirst().x < 170) {
+            if (prekazky.getFirst().y > 10) {
+                isDucking = true;
+            }
+            else {
+                this.inJump = true;
+                this.rising = true;
+                this.yPos = 10;
+            }
+        }
+        else {
+            isDucking = false;
         }
 
         if (this.inJump) {
@@ -94,22 +136,38 @@ public class MyTrexObrazovka extends ScreenAdapter {
         //Pridanie novych
         if (this.rnd.nextInt() < 10 && (this.prekazky.size() == 0 || this.prekazky.getLast().x < 200)) {
             this.prekazky.add(new Prekazka(Gdx.graphics.getWidth(), this.rnd.nextInt(2) + 1, this.rnd.nextBoolean()));
+            if (prekazky.getLast().height == 30 && this.rnd.nextInt(10) < 7) {
+                prekazky.getLast().width = 40;
+                prekazky.getLast().y = 80;
+            }
         }
 
 
         this.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        this.shapeRenderer.setColor(Color.GREEN);
-        this.shapeRenderer.rect(10, (float) this.yPos, 40, 100);
+        //this.shapeRenderer.setColor(Color.GREEN);
+        //this.shapeRenderer.rect(10, (float) this.yPos, 40, 100);
 
         //Vykrelsenie prekazok
         for (Prekazka prekazka : this.prekazky) {
             this.shapeRenderer.setColor(Color.BLACK);
-            this.shapeRenderer.rect(prekazka.x, 10, prekazka.width, prekazka.height);
+            this.shapeRenderer.rect(prekazka.x, prekazka.y, prekazka.width, prekazka.height);
         }
         this.shapeRenderer.end();
 
         this.batch.begin();
-        this.font.draw(this.batch, Gdx.graphics.getFramesPerSecond()+"fps", 10, Gdx.graphics.getHeight() - 20);
+        dynoAnimationTime += delta;
+        if (inJump) {
+            this.batch.draw(dynoAnimation2.getKeyFrame(dynoAnimationTime), 10, (float) yPos);
+        } else if (isDucking) {
+            //this.batch.setColor(Color.BLACK);
+            this.batch.draw(dynoAnimation3.getKeyFrame(dynoAnimationTime), 10, (float) yPos);
+        }
+        else {
+            //this.batch.setColor(Color.BLUE);
+            dynoAnimation.getKeyFrame(dynoAnimationTime).setPosition(10, (float) yPos);
+            dynoAnimation.getKeyFrame(dynoAnimationTime).draw(this.batch);
+        }
+        this.font.draw(this.batch, Gdx.graphics.getFramesPerSecond()+"fps", 10, VYSKA_PLOCHY - 20);
         this.batch.end();
 
     }
@@ -130,11 +188,13 @@ public class MyTrexObrazovka extends ScreenAdapter {
 
     public class Prekazka {
         int x;
+        int y;
         int width;
         int height;
 
         public Prekazka(int x, int length, boolean big) {
             this.x = x;
+            this.y = 10;
             this.width = 30 * length;
             this.height = big ? 60 : 30;
         }
