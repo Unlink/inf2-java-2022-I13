@@ -46,9 +46,9 @@ public class HlavnaObrazovka extends ScreenAdapter {
             hraHadik.setScreen(new GameOverObrazovka(hraHadik));
         }
 
-        //this.kamera.position.set(10,7, 0);
-        //this.kamera.update();
-        //this.batch.setProjectionMatrix(this.kamera.combined);
+        this.kamera.position.set(hadik.getX(),hadik.getY(), 0);
+        this.kamera.update();
+        this.batch.setProjectionMatrix(this.kamera.combined);
 
         batch.begin();
         this.herneProstredie.vykresliSa(batch);

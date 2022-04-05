@@ -76,4 +76,12 @@ public class Hadik {
         }
         this.hlava.vykresliSa(batch);
     }
+
+    public float getX() {
+        return hlava.getX();
+    }
+
+    public float getY() {
+        return hlava.getY();
+    }
 }
