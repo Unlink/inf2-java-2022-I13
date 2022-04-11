@@ -1,5 +1,6 @@
 package sk.uniza.fri.wof.miestnosti;
 
+import sk.uniza.fri.wof.predmety.Jedlo;
 import sk.uniza.fri.wof.predmety.ZakladnyPredmet;
 
 /**
@@ -48,7 +49,7 @@ public class MapaHry {
 
         kancelaria.pridajVychod("labak", labak);
 
-        terasa.pridajPredmet(new ZakladnyPredmet("mineralka"));
+        terasa.pridajPredmet(new Jedlo("mineralka", 30));
         terasa.pridajPredmet(new ZakladnyPredmet("kamen"));
 
         this.startovaciaMiestnost = terasa;  // startovacia miestnost hry
