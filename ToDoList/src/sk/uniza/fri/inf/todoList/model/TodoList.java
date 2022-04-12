@@ -5,8 +5,10 @@
  */
 package sk.uniza.fri.inf.todoList.model;
 
+import sk.uniza.fri.inf.todoList.io.BinaryStorage;
 import sk.uniza.fri.inf.todoList.io.DummyStorage;
 import sk.uniza.fri.inf.todoList.io.ITodoStorage;
+import sk.uniza.fri.inf.todoList.io.SerializedStorage;
 import sk.uniza.fri.inf.todoList.model.entity.TodoCategory;
 import sk.uniza.fri.inf.todoList.model.entity.TodoItem;
 
@@ -24,7 +26,9 @@ public class TodoList {
 
     public TodoList() {
         //Na uvod budeme mať dummy storage
-        this.todoStorage = new DummyStorage();
+        //this.todoStorage = new DummyStorage();
+        //this.todoStorage = new SerializedStorage();
+        this.todoStorage = new BinaryStorage();
 
         this.categories = new ArrayList<>();
         this.items = new ArrayList<>();
