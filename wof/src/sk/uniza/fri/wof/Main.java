@@ -30,10 +30,6 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
 
-        for (Riadok riadok : NacitavacSuboru.nacitajSubor(new File("mapa.yml"))) {
-            System.out.println(riadok);
-        }
-
         Hra hra = new Hra();
         hra.hraj();
     }

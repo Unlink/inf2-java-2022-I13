@@ -8,7 +8,7 @@ import sk.uniza.fri.wof.predmety.ZakladnyPredmet;
  *
  * @author janik
  */
-public class MapaHry {
+public class MapaHry implements IMapa {
 
     private Miestnost startovaciaMiestnost;
 
@@ -55,6 +55,7 @@ public class MapaHry {
         this.startovaciaMiestnost = terasa;  // startovacia miestnost hry
     }
 
+    @Override
     public Miestnost getStartovaciaMiestnost() {
         return this.startovaciaMiestnost;
     }
