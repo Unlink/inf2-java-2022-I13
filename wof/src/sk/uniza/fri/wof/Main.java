@@ -1,6 +1,11 @@
 package sk.uniza.fri.wof;
 
 import sk.uniza.fri.wof.hra.Hra;
+import sk.uniza.fri.wof.nacitavacMapy.NacitavacSuboru;
+import sk.uniza.fri.wof.nacitavacMapy.Riadok;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Hlavna trieda hry WoF s metodou main - spustanie v NB
@@ -23,7 +28,12 @@ public class Main {
     /**
      * @param args parametre programu
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        for (Riadok riadok : NacitavacSuboru.nacitajSubor(new File("mapa.yml"))) {
+            System.out.println(riadok);
+        }
+
         Hra hra = new Hra();
         hra.hraj();
     }

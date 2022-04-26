@@ -30,6 +30,10 @@ miestnosti: 												#Zoznam miestnosti
     popis: kancelaria spravcu pocitacoveho laboratoria
     vychody:
       zapad: labak
+
+  chodbaPodzemie:
+  chodba1Poschode:
+  chodba2Poschode:
   vytah:
     typ: Vytah
     parametre:
@@ -37,9 +41,6 @@ miestnosti: 												#Zoznam miestnosti
       - terasa
       - chodba1Poschode
       - chodba2Poschode
-  chodbaPodzemie:
-  chodba1Poschode:
-  chodba2Poschode:
 
 
 start: terasa
