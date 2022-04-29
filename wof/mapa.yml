@@ -1,12 +1,12 @@
 #vsetko co je za tymto znakom je komentar
 #prazdne riadky sa ignoruju
-miestnosti: 												#Zoznam miestnosti
+miestnosti: #Zoznam miestnosti
   terasa:                                                   #nazov miestnosti(jedno slovo):
-    predmety:											    #v miestnosti mozu byt predmety - predmety:
+    predmety:    #v miestnosti mozu byt predmety - predmety:
       - pero                                                #Obycajny predmet - vytvorí sa instancia predmetu new ZakladnyPredmet("pero")
       - bageta: Jedlo 15                                    #Jedlo, - nazovJedla(jedno slovo): Trieda(jedno slovo) parametre oddelene medzerou - new Jedlo("bageta", 15)
       - hodinky: Hodinky
-    popis: terasa - hlavny vstup na fakultu				    #popis(viac slov)
+    popis: terasa - hlavny vstup na fakultu    #popis(viac slov)
     vychody:                                                #v miestnosti mozu byt vychody - vychody:
       vychod: aula                                          #smer(jedno slovo): ciel(jedno slovo) - na východ je aula
       juh: labak
